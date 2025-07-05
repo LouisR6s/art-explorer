@@ -2,13 +2,7 @@ pipeline {
     agent any
 
     stages {
-        stage('Clone') {
-            steps {
-                git 'https://github.com/o0morgan0o/art-explorer.git'
-            }
-        }
-
-        stage('Build Image') {
+        stage('Build Docker Image') {
             steps {
                 sh 'docker build -t art-explorer .'
             }
@@ -32,7 +26,7 @@ pipeline {
 
     post {
         failure {
-            echo "Le build a échoué !"
+            echo "💥 Le build a échoué !"
         }
     }
 }
